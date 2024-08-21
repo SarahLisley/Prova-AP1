@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';//Usa react
 
 const Questao03 = () => {
     const [capitais, setCapitais] = useState({ maior: '', menor: '' });
@@ -6,11 +6,11 @@ const Questao03 = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://restcountries.com/v3.1/region/europe?fields=capital,population");
+                const response = await fetch("https://restcountries.com/v3.1/region/europe?fields=capital,population");//usa await fetch do paises
                 const dado = await response.json();
 
                 // Ordena os dados pela população
-                dado.sort((a, b) => a.population - b.population);
+                dado.sort((a, b) => a.population - b.population);//aqui usa o sort para ordena o array
 
                 // Obtém as capitais com menor e maior população
                 const menorPopulacao = dado[0].capital[0];
@@ -28,8 +28,8 @@ const Questao03 = () => {
     return (
         <div>
             <h1>Capitais com Menor e Maior População</h1>
-            <p>Menor População: {capitais.menor}</p>
-            <p>Maior População: {capitais.maior}</p>
+            <p>Menor População: {capitais.menor}</p>//retorna a capital com menor população
+            <p>Maior População: {capitais.maior}</p>//retorna a capital com maior população
         </div>
     );
 };
