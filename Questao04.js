@@ -6,8 +6,8 @@ const Questao04 = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-        const dadoPromessa = new Promise ((resolva) => {
-                        resolva([
+        const dadoPromessa = new Promise ((resolva) => {//Usa promessa, cria um promessa
+                        resolva([//dados da capitais e a população
                             {"capital": ["Dublin"], "population": 4994724},
                             {"capital": ["Nicosia"], "population": 1207361},
                             {"capital": ["Madrid"], "population": 47351567}
