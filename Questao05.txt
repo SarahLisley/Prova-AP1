@@ -1,0 +1,75 @@
+O problema de props drilling acontece quando é necessario passar propriedades por vários níveis de componentes para que
+um componente filho possa usá-las. Isso pode tornar o código difícil de manter e entender, porque muitos componentes 
+de nivel intermediário recebem e repassam propriedades que não utilizam diretamente.
+O React Context oferece uma solução para esse problema, permitindo compartilhar dados entre componentes sem precisar
+passar explicitamente as propriedades por cada nível da árvore de componentes. Com o Context, é necessario definir um “provedor”
+(Provider) que disponibiliza os dados para qualquer componente “consumidor” (Consumer) dentro da árvore.
+
+Exemplo
+Sem Context
+import React from 'react';
+
+const App = () => {
+  const theme = 'dark';
+
+  return (
+    <div>
+      <Header theme={theme} />
+      <Main theme={theme} />
+      <Footer theme={theme} />
+    </div>
+  );
+};
+
+const Header = ({ theme }) => (
+  <header>
+    <User theme={theme} />
+  </header>
+);
+
+const User = ({ theme }) => (
+  <div>
+    User Theme: {theme}
+  </div>
+);
+
+export default App;
+
+Neste exemplo, a propriedade theme é passada do componente App para Header e depois para User, mesmo que Header não utilize theme diretamente.
+
+Com Context
+import React, { createContext, useContext } from 'react';
+
+// Cria o Context
+const ThemeContext = createContext();
+
+const App = () => {
+  const theme = 'dark';
+
+  return (
+    <ThemeContext.Provider value={theme}>
+      <div>
+        <Header />
+        <Main />
+        <Footer />
+      </div>
+    </ThemeContext.Provider>
+  );
+};
+
+const Header = () => (
+  <header>
+    <User />
+  </header>
+);
+
+const User = () => {
+  const theme = useContext(ThemeContext);
+  return (
+    <div>
+      User Theme: {theme}
+    </div>
+  );
+};
+
+export default App;
