@@ -1,5 +1,5 @@
 import React from "react";
-const Questao01A = () => {//Usei a função arrow para criar o componente
+const Questao01 = () => {//Usei a função arrow para criar o componente
     const lista = [
         {a: 10, b: 3, c: 7},
         {a: 5, b: -3, c: 9},
@@ -14,15 +14,12 @@ const Questao01A = () => {//Usei a função arrow para criar o componente
     )
 }
 
-function Questao01B  (Questao01A) {//Usei function para criar o componente, ou seja, a função clássica
-    const lista = Questao01A
-
-    if (!Array.isArray(lista)) {
-        return <div>Lista não é um array válido</div>;
-    }
-
+function Questao01B  (props) {//Usei function para criar o componente, ou seja, a função clássica
+    const {lista} = props
+    
     return(
         <div>
+        <h2>Questao01B</h2>
             <ul>
             {lista.map((i, index) => {//
                 const ma = Math.max(i.a, i.b, i.c);//Criei um objeto ma para passar os maiores numeros de cada item a, b
@@ -35,4 +32,4 @@ function Questao01B  (Questao01A) {//Usei function para criar o componente, ou s
 }
 
 
-export default Questao01A
+export default Questao01
